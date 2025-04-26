@@ -1,14 +1,12 @@
-# Image Compression and Analysis Using Gaussian and Laplacian Pyramids
+# Laplacian Pyramid Image Compression and Analysis
 
-This project implements and analyzes the **Gaussian** and **Laplacian Pyramid** frameworks for image processing and compression, based on the techniques described in:
-- "Pyramid Methods in Image Processing" by P. Burt (1981)
-- "The Laplacian Pyramid as a Compact Image Code" by P. Burt and E. Adelson (1983)
+This project implements and analyzes the **Gaussian** and **Laplacian Pyramid** frameworks for image processing and compression, based on the classic paper by Burt and Adelson ("The Laplacian Pyramid as a Compact Image Code", 1983).
 
-The main objectives are:
+The main objectives of the project are:
 - Building Gaussian and Laplacian pyramids from images.
 - Reconstructing images from the pyramids and evaluating reconstruction quality.
-- Performing quantization and analyzing its effects on compression and entropy.
-- Studying how parameters like the generating kernel parameter 'a' and the pyramid depth influence the results.
+- Performing quantization and analyzing the effects on compression and entropy.
+- Studying how parameters (such as the generating kernel parameter 'a' and the depth of the pyramid) influence the results.
 
 ---
 
@@ -26,7 +24,7 @@ The main objectives are:
 The project is divided into two main parts:
 
 1. **Theoretical Part**  
-   Discussion of key concepts including:
+   Explanation of key concepts including:
    - Effect of the kernel parameter 'a' on the Gaussian pyramid.
    - Definition and calculation of entropy.
    - Impact of bin size on quantization.
@@ -38,23 +36,23 @@ The project is divided into two main parts:
    - Image reconstruction from pyramids.
    - Quantization experiments.
    - Entropy calculation and analysis.
-   - Testing with standard images (Lena and Camera).
+   - Testing using standard images (Lena and Camera).
 
 ---
 
 ## Implemented Functions
 
 - **GKernel(a)**  
-  Generates a 5x5 separable Gaussian-like kernel based on the parameter `a`.
+  Generates a 5x5 separable Gaussian-like kernel based on parameter `a`.
 
 - **GREDUCE(I, h)**  
-  Applies convolution and downsampling to reduce the image resolution.
+  Applies convolution and downsampling to reduce image resolution.
 
 - **GPyramid(I, a, depth)**  
-  Builds the Gaussian pyramid up to a specified depth.
+  Builds a Gaussian pyramid up to the specified depth.
 
 - **GEXPAND(I, h)**  
-  Upsamples the image by zero insertion and interpolation via convolution.
+  Upsamples the image by inserting zeros and interpolating via convolution.
 
 - **LPyramid(I, a, depth)**  
   Constructs the Laplacian pyramid from the Gaussian pyramid.
@@ -63,32 +61,32 @@ The project is divided into two main parts:
   Reconstructs the original image from a Laplacian pyramid.
 
 - **L_Quantization(lpyr, bin_size)**  
-  Applies uniform quantization across all Laplacian pyramid levels.
+  Uniformly quantizes each level of a Laplacian pyramid.
 
 - **H_entropy(pyramid)**  
-  Calculates the Shannon entropy for each pyramid level.
+  Calculates the Shannon entropy of each pyramid level.
 
 - **L_Quantization_by_levels(lpyr, bin_sizes)**  
-  Performs level-dependent quantization using different bin sizes for each pyramid level.
+  Performs level-dependent quantization with different bin sizes at each level.
 
 ---
 
 ## Experiments and Observations
 
 - **Gaussian and Laplacian Pyramid Visualization**  
-  Visual analysis of pyramid levels and reconstruction quality.
+  Visual analysis of the pyramid levels and reconstruction quality.
 
 - **Effect of Kernel Parameter 'a'**  
-  Tested values from 0.3 to 0.7. Best results in terms of reconstruction error and entropy observed around `a ≈ 0.5`.
+  Tested values from 0.3 to 0.7; found that `a ≈ 0.5` gives the best entropy and reconstruction quality.
 
 - **Effect of Pyramid Depth**  
-  Deeper pyramids slightly lower the entropy at higher levels without major loss of visual quality.
+  Observed that deeper pyramids slightly lower the entropy at higher levels, without major quality loss.
 
 - **Quantization Analysis**  
-  Larger bin sizes reduce entropy (better compression) but degrade image quality.
+  Showed how larger bin sizes degrade visual quality but significantly reduce entropy (compression efficiency).
 
 - **Entropy vs Parameter Plots**  
-  Plots showing how entropy varies with kernel parameter 'a' and pyramid depth.
+  Plots showing how entropy varies with different values of `a` and different pyramid depths.
 
 ---
 
@@ -100,10 +98,10 @@ The project is divided into two main parts:
   - scipy
   - matplotlib
   - scikit-image
-  - opencv-python
+  - OpenCV (`cv2`)
   - urllib
 
-Install all requirements via pip:
+Install requirements via pip:
 
 ```bash
 pip install numpy scipy matplotlib scikit-image opencv-python
